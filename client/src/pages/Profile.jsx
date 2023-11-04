@@ -130,14 +130,14 @@ export default function Profile() {
     try {
       setShowListingsError(false);
       const res = await fetch(`/api/user/listings/${currentUser._id}`);
-      const data = res.json();
+      const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
         return;
       }
 
       setUserListings(data);
-    } catch (err) {
+    } catch (error) {
       setShowListingsError(true);
     }
   };
@@ -250,6 +250,7 @@ export default function Profile() {
       <p className="text-red-700 mt-5">
         {showListingsError ? "Error Showing listings" : ""}
       </p>
+
       {userListings && userListings.length > 0 && (
         <div className="flex flex-col gap-4">
           <h1 className="text-center mt-7 text-2xl font-semibold">
@@ -263,7 +264,7 @@ export default function Profile() {
               <Link to={`/listing/${listing._id}`}>
                 <img
                   src={listing.imageUrls[0]}
-                  alt="Listing Cover"
+                  alt="listing cover"
                   className="h-16 w-16 object-contain"
                 />
               </Link>
@@ -273,6 +274,7 @@ export default function Profile() {
               >
                 <p>{listing.name}</p>
               </Link>
+
               <div className="flex flex-col item-center">
                 <button
                   onClick={() => handleListingDelete(listing._id)}
