@@ -10,6 +10,7 @@ import UpdateListing from "./pages/UpdateListing";
 import Search from "./pages/Search";
 import About from "./pages/About";
 import Header from "./components/Header";
+import Footers from "./components/Footers";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
@@ -33,6 +34,8 @@ export default function App() {
           />
         </Route>
       </Routes>
+
+      <Footers />
     </BrowserRouter>
   );
 }
